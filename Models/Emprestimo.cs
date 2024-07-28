@@ -15,7 +15,7 @@ public class Emprestimo
 	{
 		get
 		{
-			return DataDevolucao != null;
+			return DataDevolucao != null; 
 		}
 	}	
 }
