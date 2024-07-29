@@ -1,28 +1,36 @@
 using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using Biblioteca;
 
 namespace Biblioteca;
 
 public class Cliente : Pessoa
 {
 
-	private List<Cliente> clientes = new List<Cliente>();
+	public static  List<Cliente> clientes = new List<Cliente>
 
-	public void CadastrarNovoCliente(string Nome, string Email, string Telefone, int Id)
-	{
-		Cliente.Add(new Cliente());
+    {
+	new Cliente  {Id= 1, Nome= "Jaqueline", DataNascimento = new DateTime(2003,11,20), Telefone = "42 99999999", Email = "jaqueline@gmail.com"},
+	new Cliente  {Id= 2, Nome= "Lucas momo", DataNascimento = new DateTime(2004,06,01), Telefone = "42 99999998", Email = "lucasmomo@gmail.com"}
+	};
+		public static void CadastrarNovoCliente(string nome, DateTime dataNascimento, string email, string telefone)
+	{	
+
+		int novoId = clientes.Count > 0 ? clientes[^1].Id + 1 : 1;
+		Cliente novoCliente = new Cliente
 		{
-			Nome = Nome;
-			Email = Email;
-			Id = Id++;
-			Telefone = Telefone;
-
+			Id = novoId,
+			Nome = nome,
+			DataNascimento = dataNascimento,
+			Email = email,
+			Telefone = telefone
 		};
+		clientes.Add( novoCliente);
+		Console.WriteLine("Seu cadastro foi realizado com sucesso!!");
 	}
 
-    private static void Add(Cliente cliente)
-    {
-        Cliente.Add(cliente);
-    }
+
 
     public int Id { get; set; }
 	public string Telefone { get; set;}

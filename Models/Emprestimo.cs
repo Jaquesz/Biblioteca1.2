@@ -1,8 +1,8 @@
 using System;
-
+using System.Collections.Generic;
 namespace Biblioteca;
 
-public class Emprestimo
+public class Emprestimo : Livro
 {
 	public int Id { get; set; }
 	public Cliente ClienteEmprestimo { get; set; }
@@ -18,4 +18,13 @@ public class Emprestimo
 			return DataDevolucao != null; 
 		}
 	}	
+
+    public static void EmprestarLivro(int idCliente, int idLivro)
+	{
+		//var cliente =clientes.FirstOrDefault(cliente => cliente.Id == idCliente);
+		var Livro = livros.FirstOrDefault(livro => livro.Id == idLivro);
+		
+
+	}
+
 }

@@ -1,4 +1,8 @@
-﻿namespace Biblioteca;
+﻿using System; 
+using System.Collections.Generic;
+
+
+namespace Biblioteca;
 
 class Program
 {
@@ -7,8 +11,7 @@ class Program
 		Biblioteca biblioteca= new Biblioteca();
 		
 		// adicionar cliente
-		biblioteca.clientes.Add(new Cliente{Id = 1, Nome = "Jorge e Mateus", 
-		DataNascimento = new DateTime(1980, 01, 01), Telefone = "62999999"});
+		
 		
 		// adicionar livro
 		biblioteca.livros.Add(new Livro{Id = 1, Titulo ="Dom Casmurro", 
@@ -29,7 +32,7 @@ class Program
 		while(op!=0) {
 
 		
-
+		
 		Console.WriteLine("Escolha uma das opções!");
 		Console.WriteLine("1- Cadastrar usuário.");
 		Console.WriteLine("2- Emprestar livro.");
@@ -40,52 +43,35 @@ class Program
 
 		op= int.Parse(Console.ReadLine());
 
+		if(op==1)
+		{ 		Console.Clear();
+				Console.WriteLine("Digite seu nome.");
+				string nome = Console.ReadLine();
+				Console.WriteLine("Digite sua data de nascimento (no formato Ano, mês e dia).");
+				DateTime dataNascimento = DateTime.Parse(Console.ReadLine());
+				Console.WriteLine("Digite seu email.");
+				string email = Console.ReadLine();
+				Console.WriteLine("Digite seu telefone.");
+				string telefone = Console.ReadLine();
+				Cliente.CadastrarNovoCliente(nome, dataNascimento, email, telefone);
+				
+
+		} 
+		
+			else if(op==2)
+			{
+				EmprestarLivro();
+			}
+
+		
 
 		}
 
-		switch(op) 
+
+
+		}
+
 		
-		{
-
-			case 1:
-
-				CadastrarNovoCliente();
-				
-				break;
-
-			case 2: 
-
-				EmprestarLivro();
-
-				break;
-
-			case 3:
-
-				DevolverLivro();
-
-				break;	
-
-			case 4:
-
-				DataDevolucao();
-
-				break;
-
-			case 5:
-
-				Multa();
-
-				break;
-
-			case 6:
-
-				Sair();
-
-				break;				
-
-		}	
-	}
-
     public static void CadastrarNovoCliente()
     {
         
