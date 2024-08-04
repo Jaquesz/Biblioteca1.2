@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using Biblioteca;
+using Microsoft.VisualBasic;
 
 namespace Biblioteca;
 
@@ -30,8 +31,9 @@ public class Cliente : Pessoa
 		Console.WriteLine("Seu cadastro foi realizado com sucesso!!");
 	}
 
+public static void Verificar(int idCliente){
 
-
+var cliente =clientes.FirstOrDefault(cliente => cliente.Id == idCliente);}
     public int Id { get; set; }
 	public string Telefone { get; set;}
 

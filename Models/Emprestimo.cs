@@ -21,7 +21,7 @@ public class Emprestimo : Livro
 
     public static void EmprestarLivro(int idCliente, int idLivro)
 	{
-		//var cliente =clientes.FirstOrDefault(cliente => cliente.Id == idCliente);
+		Cliente.Verificar(idCliente);
 		var Livro = livros.FirstOrDefault(livro => livro.Id == idLivro);
 		
 
