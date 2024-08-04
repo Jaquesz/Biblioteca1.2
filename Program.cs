@@ -1,4 +1,5 @@
-﻿using System; 
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -9,23 +10,6 @@ class Program
 	public static void Main(string[] args)
 	{
 		Biblioteca biblioteca= new Biblioteca();
-		
-		// adicionar cliente
-		
-		
-		// adicionar livro
-		biblioteca.livros.Add(new Livro{Id = 1, Titulo ="Dom Casmurro", 
-		Autor = "Machado de Assis", Disponivel = true});
-		
-		// Emprestar livro
-		biblioteca.EmprestarLivro(1, 1);
-		biblioteca.DevolverLivro(1, 1);
-		biblioteca.EmprestarLivro(1, 2);
-		
-		/*static void IniciarBiblioteca(Biblioteca biblioteca)
-		{
-			biblioteca.EmprestarLivro(2,2);
-		}*/
 
 		int op=1;
 
@@ -37,9 +21,10 @@ class Program
 		Console.WriteLine("1- Cadastrar usuário.");
 		Console.WriteLine("2- Emprestar livro.");
 		Console.WriteLine("3- Devolver livro."); 
-		Console.WriteLine("4- Consultar data de devolução.");
-		Console.WriteLine("5- Consultar multa por atraso.");
-		Console.WriteLine("6- Sair.");
+		Console.WriteLine("4- Consultar empréstimos ativos.");
+		Console.WriteLine("5- Cadastrar Funcionário. ");
+		Console.WriteLine("6- Listar Funcionários.");
+		Console.WriteLine("7- Sair.");
 
 		op= int.Parse(Console.ReadLine());
 
@@ -60,48 +45,78 @@ class Program
 		
 			else if(op==2)
 			{
-				EmprestarLivro();
+				Console.Clear();
+				Console.WriteLine("Digite o id do cliente: ");
+				int idcliente = Int32.Parse(Console.ReadLine());
+
+				Console.WriteLine("Digite o id do livro: ");
+				int idlivro = Int32.Parse(Console.ReadLine());
+
+				DateTime dataemprestimo = DateTime.Now;
+
+				DateTime devolucaoprevista = DateTime.Now.AddDays(15);
+
+				Biblioteca.EmprestarLivro(idcliente, idlivro, dataemprestimo, devolucaoprevista);
+
 			}
 
+			else if(op==3)
+			{
+				Console.Clear();
+				Console.WriteLine("Digite o id do cliente: ");
+				int idcliente = Int32.Parse(Console.ReadLine());
+
+				Console.WriteLine("Digite o id do livro: ");
+				int idlivro = Int32.Parse(Console.ReadLine());
+
+				Biblioteca.DevolverLivro(idcliente, idlivro);
+			}
+
+			else if(op==4)
+			{
+				Console.Clear();
+
+				Biblioteca.Consultar();
+			}
+
+			else if (op==5)
+			{
+				Console.Clear();
+				Console.WriteLine("Digite seu nome.");
+				string nome = Console.ReadLine();
+
+				Console.WriteLine("Digite o seu cargo: ");
+				string cargo = Console.ReadLine();
+
+				Console.WriteLine("Data da admissão: ");
+				DateTime dataadmissao = DateTime.Parse(Console.ReadLine());
+
+				Console.WriteLine("Sua data de nascimento: ");
+				DateTime datanascimento = DateTime.Parse(Console.ReadLine());
+
+				Funcionario.CadastrarNovoFuncionario(nome, cargo, dataadmissao, datanascimento);
+			}
 		
+			else if (op==6)
+			{
+				Console.Clear();
+
+				Funcionario.Listar();
+			}
+
+			else if (op==7)
+			{
+				Console.WriteLine("Finalizando o programa.");
+				break;
+			}
 
 		}
 
 
 
+
 		}
 
-		
-    public static void CadastrarNovoCliente()
-    {
-        
-		Console.WriteLine("Usuário cadastrado com sucesso!");
-
-    }
-
-	private static void EmprestarLivro()
-	{
-		Console.WriteLine("Livro emprestado com sucesso!");
-	}
-
-	private static void DevolverLivro()
-	{
-		Console.WriteLine("Livro devolvido com sucesso!");
-	}
-
-	private static void DataDevolucao()
-	{
-		Console.WriteLine("Devolução daqui a 15 dias!");
-	}
-
-	private static void Multa()
-	{
-		Console.WriteLine("A multa por atraso é de 1 mês sem poder fazer emprestimos ");
-	}
-
-	private static void Sair()
-	{
-		Console.WriteLine("Saindo...");
-	}
+	
 
 }

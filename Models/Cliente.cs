@@ -9,19 +9,23 @@ namespace Biblioteca;
 public class Cliente : Pessoa
 {
 
+ public int IdCliente { get; set; }
+	public string Telefone { get; set;}
+
+	public string Email { get; set;}
 	public static  List<Cliente> clientes = new List<Cliente>
 
     {
-	new Cliente  {Id= 1, Nome= "Jaqueline", DataNascimento = new DateTime(2003,11,20), Telefone = "42 99999999", Email = "jaqueline@gmail.com"},
-	new Cliente  {Id= 2, Nome= "Lucas momo", DataNascimento = new DateTime(2004,06,01), Telefone = "42 99999998", Email = "lucasmomo@gmail.com"}
+	new Cliente  {IdCliente= 1, Nome= "Jaqueline", DataNascimento = new DateTime(2003,11,20), Telefone = "42 99999999", Email = "jaqueline@gmail.com"},
+	new Cliente  {IdCliente= 2, Nome= "Lucas momo", DataNascimento = new DateTime(2004,06,01), Telefone = "42 99999998", Email = "lucasmomo@gmail.com"}
 	};
 		public static void CadastrarNovoCliente(string nome, DateTime dataNascimento, string email, string telefone)
 	{	
 
-		int novoId = clientes.Count > 0 ? clientes[^1].Id + 1 : 1;
+		int novoId = clientes.Count > 0 ? clientes[^1].IdCliente + 1 : 1;
 		Cliente novoCliente = new Cliente
 		{
-			Id = novoId,
+			IdCliente = novoId,
 			Nome = nome,
 			DataNascimento = dataNascimento,
 			Email = email,
@@ -31,11 +35,6 @@ public class Cliente : Pessoa
 		Console.WriteLine("Seu cadastro foi realizado com sucesso!!");
 	}
 
-public static void Verificar(int idCliente){
 
-var cliente =clientes.FirstOrDefault(cliente => cliente.Id == idCliente);}
-    public int Id { get; set; }
-	public string Telefone { get; set;}
-
-	public string Email { get; set;}
+   
 } 
